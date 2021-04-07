@@ -77,5 +77,7 @@ function cambio()
                   document.getElementById("btn").innerHTML="Apagar";
 	  }else if (message.payloadString==='APAGAR'){
                   document.getElementById("btn").innerHTML="Encender";
-	  }	  
+	  }
+  }
 	 
+
