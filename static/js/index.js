@@ -1,8 +1,8 @@
 //https://www.eclipse.org/paho/clients/js/
 
-/*
 
-function LED1_On() {
+
+function ESTADO_LED() {
 	//alert("led on");
 	console.log("led on");
 	//document.getElementById("sensor").innerHTML="led on";
@@ -11,7 +11,7 @@ function LED1_On() {
         client.send(message);
   
 }
-function LED1_Off(){	
+function ESTADO_LED(){	
 	//alert("led off");
 	console.log("led off");
 	//document.getElementById("sensor").innerHTML="led off";
@@ -22,8 +22,9 @@ function LED1_Off(){
 	
 	
 }
-*/
 
+
+/*
 function ESTADO_LED(){	
 
    	if (i % 2 == 0)
@@ -45,7 +46,7 @@ function ESTADO_LED(){
 	}
 	i=i+1;
 }
-
+*/
 
 
 
