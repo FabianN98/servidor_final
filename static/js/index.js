@@ -1,54 +1,22 @@
 //https://www.eclipse.org/paho/clients/js/
 
-var ESTADO=document.getElementById('ESTADO')
-
-function ESTADO_LED() {
-	//alert("led on");
-	//console.log("led on");
-	//document.getElementById("sensor").innerHTML="led on";
-  	message = new Paho.MQTT.Message("encender");
-        message.destinationName = "israelnoriega1998@hotmail.com/led";
-        client.send(message);
-  
-}
-var ESTADO=document.getElementById('ESTADO')
-function ESTADO_LED(){	
-	//alert("led off");
-	//console.log("led off");
-	//document.getElementById("sensor").innerHTML="led off";
-	message = new Paho.MQTT.Message("apagar");
-        message.destinationName = "israelnoriega1998@hotmail.com/led";
-        client.send(message);
- 
-	
-	
-}
-
-
-/*
-function ESTADO_LED(){	
-
-   	if (i % 2 == 0)
-  	{
-		console.log("led on");
-		document.getElementById("sensor").innerHTML="ENCENDIDO";
-		message = new Paho.MQTT.Message("ON");
-   		message.destinationName = "israelnoriega1998@hotmail.com/test1";
-    		client.send(message);
-
-  	}
-	else 
+var btn=document.getElementById('btn'),contador=0;
+function cambio()
+{if (contador==0)
 	{
-		console.log("led off");
-		document.getElementById("sensor").innerHTML="APAGADO";
-		message = new Paho.MQTT.Message("OFF");
-    		message.destinationName = "israelnoriega1998@hotmail.comc/test1";
-    		client.send(message);
-	}
-	i=i+1;
+	message = new Paho.MQTT.Message("ENCENDER");
+ 	message.destinationName = "israelnoriega1998@hotmail.com/led";
+ 	client.send(message);
+ 	contador=1;
+ 	}
+ else
+ 	{
+ 	message = new Paho.MQTT.Message("APAGAR");
+	message.destinationName = "israelnoriega1998@hotmail.com/led";
+	client.send(message);
+ 	contador=0;
+ 	}
 }
-*/
-
 
 
 
@@ -99,18 +67,14 @@ function ESTADO_LED(){
   called when a message arrives
   function onMessageArrived(message) {
     console.log("onMessageArrived:"+message.payloadString);
-	  //comando para poner el sensor desde esp32
 	  document.getElementById("sensor").innerHTML=message.payloadString;
-	  if(message.payloadString==='ENCENDIDO'){
-		
-	  } else if(message.payloadString==='APAGADO'){
-		
- 		
+          if(message.payloadString==='ENCENDER'){
+                  // document.getElementById("imagen").src="https://aprendecomohacerlo.com/wp-content/uploads/2021/02/quitar-led-rojo-encendido-huawei.jpg";
+	  } else if (message.payloadString==='APAGAR'){
+                //document.getElementById("imagen").src="https://i.ebayimg.com/images/g/mq0AAOSwETJaHXHd/s-l300.jpg ";
 	  }
-	  if(message.payloadString==='ENCENDIDO'){
-	  	document.getElementById("btn").innerHTML="Apagar";
-	  } else if(message.payloadString==='APAGADO'){
-		document.getElementById("btn").innerHTML="Encender";
-	  }
-	  
-  }
+	  if(message.payloadString==='ENCENDER'){
+                  document.getElementById("btn").innerHTML="Apagar";
+	  }else if (message.payloadString==='APAGAR'){
+                  document.getElementById("btn").innerHTML="Encender";
+	 
