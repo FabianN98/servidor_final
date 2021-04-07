@@ -96,9 +96,21 @@ function ESTADO_LED(){
     }
   }
 
-  // called when a message arrives
+  called when a message arrives
   function onMessageArrived(message) {
     console.log("onMessageArrived:"+message.payloadString);
+	  //comando para poner el sensor desde esp32
 	  document.getElementById("sensor").innerHTML=message.payloadString;
+	  if(message.payloadString==='ENCENDIDO'){
+		
+	  } else if(message.payloadString==='APAGADO'){
+		
+ 		
+	  }
+	  if(message.payloadString==='ENCENDIDO'){
+	  	document.getElementById("btn").innerHTML="Apagar";
+	  } else if(message.payloadString==='APAGADO'){
+		document.getElementById("btn").innerHTML="Encender";
+	  }
+	  
   }
-  
