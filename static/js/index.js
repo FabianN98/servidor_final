@@ -1,19 +1,20 @@
 //https://www.eclipse.org/paho/clients/js/
 
-
+var ESTADO=document.getElementById('ESTADO')
 
 function ESTADO_LED() {
 	//alert("led on");
-	console.log("led on");
+	//console.log("led on");
 	//document.getElementById("sensor").innerHTML="led on";
   	message = new Paho.MQTT.Message("encender");
         message.destinationName = "israelnoriega1998@hotmail.com/led";
         client.send(message);
   
 }
+var ESTADO=document.getElementById('ESTADO')
 function ESTADO_LED(){	
 	//alert("led off");
-	console.log("led off");
+	//console.log("led off");
 	//document.getElementById("sensor").innerHTML="led off";
 	message = new Paho.MQTT.Message("apagar");
         message.destinationName = "israelnoriega1998@hotmail.com/led";
