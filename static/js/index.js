@@ -1,15 +1,49 @@
 //https://www.eclipse.org/paho/clients/js/
 
+/*
+
 function LED1_On() {
-	alert("led on");
+	//alert("led on");
 	console.log("led on");
-	document.getElementById("sensor").innerHTML="led on";
+	//document.getElementById("sensor").innerHTML="led on";
+  	message = new Paho.MQTT.Message("encender");
+        message.destinationName = "israelnoriega1998@hotmail.com/led";
+        client.send(message);
   
 }
 function LED1_Off(){	
-	alert("led off");
+	//alert("led off");
 	console.log("led off");
-	document.getElementById("sensor").innerHTML="led off";
+	//document.getElementById("sensor").innerHTML="led off";
+	message = new Paho.MQTT.Message("apagar");
+        message.destinationName = "israelnoriega1998@hotmail.com/led";
+        client.send(message);
+ 
+	
+	
+}
+*/
+
+function ESTADO_LED(){	
+
+   	if (i % 2 == 0)
+  	{
+		console.log("led on");
+		document.getElementById("sensor").innerHTML="ENCENDIDO";
+		message = new Paho.MQTT.Message("ON");
+   		message.destinationName = "israelnoriega1998@hotmail.com/test1";
+    		client.send(message);
+
+  	}
+	else 
+	{
+		console.log("led off");
+		document.getElementById("sensor").innerHTML="APAGADO";
+		message = new Paho.MQTT.Message("OFF");
+    		message.destinationName = "israelnoriega1998@hotmail.comc/test1";
+    		client.send(message);
+	}
+	i=i+1;
 }
 
 
@@ -27,8 +61,8 @@ function LED1_Off(){
   client.onMessageArrived = onMessageArrived;
   var options = {
    useSSL: false,
-    userName: "lfrenteriax@hotmail.com",
-    password: "lfrenteriax",
+    userName: "israelnoriega1998@hotmail.com",
+    password: "israel1998",
     onSuccess:onConnect,
     onFailure:doFail
   }
@@ -41,9 +75,9 @@ function LED1_Off(){
     // Once a connection has been made, make a subscription and send a message.
     console.log("Conectado...");
 	
-    client.subscribe("lfrenteriax@hotmail.com/test");
+    client.subscribe("israelnoriega1998@hotmail.com/led");
     message = new Paho.MQTT.Message("hola desde la web");
-    message.destinationName = "lfrenteriax@hotmail.com/test1";
+    message.destinationName = "israelnoriega1998@hotmail.com/led";
     client.send(message);
 	
   }
@@ -63,5 +97,6 @@ function LED1_Off(){
   // called when a message arrives
   function onMessageArrived(message) {
     console.log("onMessageArrived:"+message.payloadString);
+	  document.getElementById("sensor").innerHTML=message.payloadString;
   }
   
